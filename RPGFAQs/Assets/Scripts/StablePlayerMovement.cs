@@ -10,12 +10,14 @@ namespace Assets.Scripts
     public class StablePlayerMovement : MonoBehaviour
     {
         // The maximum speed in units per second the player will move
-        public float MaxSpeed = 5f;
+        public float MaxSpeed { get; } = 5f;
         public float Deadzone = 0.1f;
         public float TalkingRange = 2f;
         public bool FreezePlayer = false;
+        public Vector2 PreviousDirection = Vector2.zero;
+        public Vector2 PreviousMovement { get; private set; } = Vector2.zero;
+        private Vector2 _previousPosition;
         private Rigidbody2D _rb;
-        private Vector2 _previousDirection = Vector2.zero;
         private DialogueManager _dialogue;
         private DialogueSource _currentBubble;
         private bool _isTalking;
@@ -34,6 +36,7 @@ namespace Assets.Scripts
         {
             _rb = GetComponent<Rigidbody2D>();
             _dialogue = GameObject.Find("LightBackground").GetComponent<DialogueManager>();
+            _previousPosition = transform.position;
         }
 
         void Update()
@@ -53,11 +56,10 @@ namespace Assets.Scripts
             float vSpeed = Input.GetAxis(InputConstants.MOV_V_AXIS);
 
             Vector2 input = Vector2.zero;
-            if (_previousDirection == Vector2.zero)
+            if (PreviousDirection == Vector2.zero)
             {
                 if (hSpeed == vSpeed)
                 {
-                    // In a stalemate between axes, the axis used is chosen by a coin flip.
                     if (Time.deltaTime % 2 == 0)
                     {
                         input.x = hSpeed;
@@ -78,17 +80,27 @@ namespace Assets.Scripts
             }
             else
             {
-                if (hSpeed != _previousDirection.x)
+                if (PreviousDirection.x != 0f)
                 {
-                    input.x = hSpeed;
+                    if (hSpeed != 0f)
+                    {
+                        input.x = hSpeed;
+                    }
+                    else
+                    {
+                        input.y = vSpeed;
+                    }
                 }
-                else if (vSpeed != _previousDirection.y)
+                else if (PreviousDirection.y != 0f)
                 {
-                    input.y = vSpeed;
-                }
-                else
-                {
-                    input = _previousDirection;
+                    if (vSpeed != 0f)
+                    {
+                        input.y = vSpeed;
+                    }
+                    else
+                    {
+                        input.x = hSpeed;
+                    }
                 }
             }
 
@@ -96,9 +108,12 @@ namespace Assets.Scripts
             {
                 input = Vector2.zero;
             }
+            PreviousDirection = input;
             input.x *= MaxSpeed;
             input.y *= MaxSpeed;
             _rb.velocity = input;
+            PreviousMovement = (Vector2)transform.position - _previousPosition;
+            _previousPosition = transform.position;
         }
 
         void Speak()
