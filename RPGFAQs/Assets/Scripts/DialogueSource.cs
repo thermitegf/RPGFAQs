@@ -29,6 +29,7 @@ public class DialogueSource : MonoBehaviour {
         // Don't render the dialogue window on the top half of the screen if the speech bubble 
         // is also on the top half.
         var onTopHalf = _camera.WorldToScreenPoint(transform.position).y > screenHeight / 2;
+        //Debug.Log($"{screenHeight}, {_camera.WorldToScreenPoint(transform.position).y}");
         _dialogueManager.StartDialogue(DialogueFile, !onTopHalf, () => speaker.IsTalking = false);
     }
 }

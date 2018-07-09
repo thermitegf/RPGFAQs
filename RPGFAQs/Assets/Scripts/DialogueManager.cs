@@ -134,7 +134,7 @@ public class DialogueManager : DialogueUIBehaviour
         Vector3 currentPosition = _windowTransform.anchoredPosition;
         if (_displayOnTop)
         {
-            currentPosition.y = 275f;
+            currentPosition.y = 475f;
         }
         else
         {
