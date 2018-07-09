@@ -20,8 +20,6 @@ public class DialogueManager : DialogueUIBehaviour
         {
             _dialogueWindow = GameObject.Find("LightBackground");
             _dialogueLoader = GameObject.Find("DialogueLoader").GetComponent<DialogueRunner>();
-            //_dialogueAssets = new ResourceUtilities().GetAssetBundle("dialogue");
-            //_dialogueLoader.AddScript(ErrorHandler);
             _windowTransform = _dialogueWindow.GetComponent<RectTransform>();
             _nameMesh = GameObject.Find("Name").GetComponent<TextMeshProUGUI>();
             _nameMesh.text = null;
@@ -32,7 +30,6 @@ public class DialogueManager : DialogueUIBehaviour
     }
 
     private List<DialogueSource> _talkables = new List<DialogueSource>();
-    //private AssetBundle _dialogueAssets;
     private Dictionary<string, TextAsset> _dialogueCache = new Dictionary<string, TextAsset>();
     private DialogueSource _currentlyActivatedTalkable;
     private DialogueRunner _dialogueLoader;
@@ -111,22 +108,6 @@ public class DialogueManager : DialogueUIBehaviour
         // By convention, all Yarn start nodes will be the file name (minus extension) plus "Start".
         _dialogueLoader.StartDialogue(dialogueFile.name + "Start");
     }
-
-    //private TextAsset LoadTextAsset(string fileName)
-    //{
-    //    if (_dialogueCache.ContainsKey(fileName))
-    //    {
-    //        return _dialogueCache[fileName];
-    //    }
-    //    else
-    //    {
-    //        var extensionAdded = fileName + ".json";
-    //        TextAsset asset = _dialogueAssets.LoadAsset<TextAsset>(extensionAdded);
-    //        _dialogueCache.Add(fileName, asset);
-    //        _dialogueLoader.AddScript(asset);
-    //        return asset;
-    //    }
-    //}
 
     public override IEnumerator DialogueStarted()
     {
