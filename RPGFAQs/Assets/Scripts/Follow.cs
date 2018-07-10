@@ -14,7 +14,7 @@ public class Follow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Record one second's worth of movements.
-        _movementCount = Mathf.RoundToInt(1f / Time.deltaTime);
+        _movementCount = 0;
         _previousPosition = Target.transform.position;
         StartCoroutine(SampleFramerate());
 	}
@@ -23,8 +23,12 @@ public class Follow : MonoBehaviour {
 	void Update () {
         //Debug.Log(_movementCount);
         _movements.AddLast((Vector2)Target.transform.position - _previousPosition);
-        if (_movements.Count < _movementCount)
+        // Don't move while the framerate is being calculated and initial movements are being
+        // queued up.
+        if (_movementCount == 0 || _movements.Count < _movementCount)
         {
+            // Keep tracking previous position during the execution of SampleFramerate()
+            _previousPosition = Target.transform.position;
             return;
         }
         var movement = _movements.First.Value;
@@ -38,7 +42,7 @@ public class Follow : MonoBehaviour {
         const int sampleCount = 10;
         // Defines the fraction of a second movement delay that followers have 
         // compared with their target
-        const float fractionOfSecond = 0.3f;
+        const float fractionOfSecond = 0.4f;
         int[] samples = new int[sampleCount];
         for(int i = 0; i < sampleCount; i++)
         {
