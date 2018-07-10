@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class Follow : MonoBehaviour {
 
-    public StablePlayerMovement Target;
+    public GameObject Target;
+    private Vector2 _previousPosition;
     private LinkedList<Vector2> _movements = new LinkedList<Vector2>();
     private int _movementCount;
 
@@ -14,13 +15,14 @@ public class Follow : MonoBehaviour {
 	void Start () {
         // Record one second's worth of movements.
         _movementCount = Mathf.RoundToInt(1f / Time.deltaTime);
+        _previousPosition = Target.transform.position;
         StartCoroutine(SampleFramerate());
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //Debug.Log(_movementCount);
-        _movements.AddLast(Target.PreviousMovement);
+        _movements.AddLast((Vector2)Target.transform.position - _previousPosition);
         if (_movements.Count < _movementCount)
         {
             return;
@@ -28,6 +30,7 @@ public class Follow : MonoBehaviour {
         var movement = _movements.First.Value;
         _movements.RemoveFirst();
         transform.Translate(movement);
+        _previousPosition = Target.transform.position;
 	}
 
     private IEnumerator SampleFramerate()
