@@ -21,6 +21,10 @@ public class Follow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Pauser.IsPaused)
+        {
+            return;
+        }
         //Debug.Log(_movementCount);
         _movements.AddLast((Vector2)Target.transform.position - _previousPosition);
         // Don't move while the framerate is being calculated and initial movements are being
