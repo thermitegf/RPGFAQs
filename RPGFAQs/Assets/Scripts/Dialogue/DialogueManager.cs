@@ -141,7 +141,8 @@ public class DialogueManager : DialogueUIBehaviour
         {
             while (counter < interval)
             {
-                if (Input.GetButtonUp(InputConstants.SUBMIT_AXIS))
+                // Don't allow text to be skipped if the game is paused.
+                if (Input.GetButtonUp(InputConstants.SUBMIT_AXIS) && !Pauser.IsPaused)
                 {
                     _dialogueMesh.text = dialogue;
                     break;
@@ -150,6 +151,11 @@ public class DialogueManager : DialogueUIBehaviour
                 yield return null;
             }
             counter = 0f;
+            // Don't add text if the game is paused.
+            if (Pauser.IsPaused)
+            {
+                yield return null;
+            }
             sb.Append(c);
             _dialogueMesh.text = sb.ToString();
         }
@@ -157,6 +163,11 @@ public class DialogueManager : DialogueUIBehaviour
         yield return null;
         while (!Input.GetButtonUp(InputConstants.SUBMIT_AXIS))
         {
+            // Don't respond to input while the game is paused.
+            if (Pauser.IsPaused)
+            {
+                yield return null;
+            }
             yield return null;
         }
     }

@@ -41,6 +41,11 @@ namespace Assets.Scripts
 
         void Update()
         {
+            // Don't respond to input while the game is paused.
+            if (Pauser.IsPaused)
+            {
+                return;
+            }
             Move();
             Speak();
         }

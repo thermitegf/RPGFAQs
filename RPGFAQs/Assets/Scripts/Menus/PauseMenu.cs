@@ -32,6 +32,9 @@ public class PauseMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // Because there's no scenario under which the pause menu should become unavailable, we don't
+        // require any checks (e.g. pause state, dialogue state, etc) other than input for the pause menu
+        // to function.
         if (Input.GetButtonUp(InputConstants.MENU_AXIS))
         {
             MenuOpened = !MenuOpened;
