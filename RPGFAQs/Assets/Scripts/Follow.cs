@@ -43,7 +43,7 @@ public class Follow : MonoBehaviour {
         // Defines the fraction of a second movement delay that followers have 
         // compared with their target
         const float fractionOfSecond = 0.4f;
-        int[] samples = new int[sampleCount];
+        var samples = new int[sampleCount];
         for(int i = 0; i < sampleCount; i++)
         {
             samples[i] = Mathf.RoundToInt(1f / Time.deltaTime);
