@@ -14,7 +14,14 @@ public class PauseMenu : MonoBehaviour {
         private set
         {
             _animator.SetBool("IsPaused", value);
-            Pauser.SetPause(value, this);
+            if (value)
+            {
+                Pauser.Pause(this);
+            }
+            else
+            {
+                Pauser.Unpause(this);
+            }
             _menuOpened = value;
         }
     }

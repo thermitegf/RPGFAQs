@@ -14,9 +14,23 @@ public class MenuHider : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonUp(InputConstants.INV_AXIS))
+        if (Input.GetButtonUp(InputConstants.INV_AXIS))
         {
-            TabMenu.SetActive(!TabMenu.activeSelf);
+            if (!Pauser.IsPaused)
+            {
+                Pauser.Pause(this);
+                TabMenu.SetActive(true);
+            }
+            else
+            {
+                // Only close the menu and unpause if this menu is the only thing causing the game to pause.
+                if (Pauser.PauseLocks.Count == 1 && Pauser.PauseLocks.Contains(this))
+                {
+                    Pauser.Unpause(this);
+                    TabMenu.SetActive(false);
+                }
+            }
         }
+
 	}
 }

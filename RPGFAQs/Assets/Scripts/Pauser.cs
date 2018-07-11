@@ -10,16 +10,24 @@ public class Pauser {
         get { return _isPaused; }
     }
 
-    public static void SetPause(bool value, Object pauseLock = null)
+    public static void Pause(Object pauseLock)
     {
-        if (PauseLock != null && PauseLock != pauseLock)
-        {
-            return;
-        }
-        Time.timeScale = value ? 0f : 1f;
-        _isPaused = value;
-        PauseLock = value ? pauseLock : null;
+        PauseLocks.Add(pauseLock);
+        Time.timeScale = 0f;
+        _isPaused = true;
+        Debug.Log($"Paused. Pauselocks count: ${PauseLocks.Count}");
     }
 
-    private static Object PauseLock { get; set; }
+    public static void Unpause(Object pauseLock)
+    {
+        PauseLocks.Remove(pauseLock);
+        if(PauseLocks.Count == 0)
+        {
+            Time.timeScale = 1f;
+            _isPaused = false;
+        }
+        Debug.Log($"Unpaused. Pauselocks count: ${PauseLocks.Count}");
+    }
+
+    public static List<object> PauseLocks { get; private set; } = new List<object>();
 }
