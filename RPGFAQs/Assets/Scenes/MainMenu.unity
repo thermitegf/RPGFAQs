@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 1333304025}
   - component: {fileID: 1333304026}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: SceneInitializer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,7 +495,6 @@ MonoBehaviour:
     type: 2}
   DialogueLoader: {fileID: 1323432527872420, guid: 3302be17a9d3eb746933dedf76d6f865,
     type: 2}
-  ExitNumber: 0
 --- !u!1 &1560324905
 GameObject:
   m_ObjectHideFlags: 0

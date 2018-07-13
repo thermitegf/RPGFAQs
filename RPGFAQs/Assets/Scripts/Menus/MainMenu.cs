@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-	public void StartGame()
+    private SceneInitializer scenes;
+
+    public void Start()
     {
-        SceneManager.LoadScene("Overworld");
+        scenes = FindObjectOfType<SceneInitializer>();
+    }
+
+    public void StartGame()
+    {
+        scenes.LoadScene("Overworld", Vector2.zero);
     }
 }
