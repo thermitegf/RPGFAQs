@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start
+  m_Text: New Game
 --- !u!222 &35365243
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -220,7 +220,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.15686275, g: 0.22352941, b: 0.5411765, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -488,6 +488,9 @@ MonoBehaviour:
   PlayerCamera: {fileID: 1638541445560688, guid: 3a676f58dad41a7418fe84567a92266c,
     type: 2}
   Follower: {fileID: 1694932877613432, guid: a8a887b3aa675c74eb74fc35593b4465, type: 2}
+  Canvas: {fileID: 1675132046489208, guid: 2721780f14e4924489d0041ce5188073, type: 2}
+  CanvasEvents: {fileID: 1475085457398870, guid: 730405daf7b93b84680c384c3974f51f,
+    type: 2}
   PauseMenu: {fileID: 1724064487487432, guid: f8592158202e8a345b77930e9076df0d, type: 2}
   InventoryMenu: {fileID: 1634911791699712, guid: 37bf61310d722aa4fb9b3f48d9644b71,
     type: 2}

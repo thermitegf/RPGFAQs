@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: TileDecorations
+    uniqueID: 2319311189
+    locked: 0
   - name: Followers
     uniqueID: 3516873383
     locked: 0

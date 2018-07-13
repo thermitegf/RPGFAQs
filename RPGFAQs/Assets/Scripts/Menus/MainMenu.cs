@@ -14,6 +14,6 @@ public class MainMenu : MonoBehaviour {
 
     public void StartGame()
     {
-        scenes.LoadScene("Overworld", Vector2.zero);
+        scenes.LoadScene("Prison_Yard", Vector2.zero);
     }
 }

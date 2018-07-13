@@ -9,6 +9,8 @@ public class SceneInitializer : MonoBehaviour {
     public GameObject Player;
     public GameObject PlayerCamera;
     public GameObject Follower;
+    public GameObject Canvas;
+    public GameObject CanvasEvents;
     public GameObject PauseMenu;
     public GameObject InventoryMenu;
     public GameObject DialogueMenu;
@@ -33,16 +35,25 @@ public class SceneInitializer : MonoBehaviour {
 
     public void Initialize(SceneData data)
     {
+        // The canvas is always necessary for something.
+        var canvas = SpawnCanvas();
         // Pausing is the most important thing, so it goes first.
         if (data.RequirePauseMenu)
-            SpawnPauseMenu(data.Canvas);
+            SpawnPauseMenu(canvas);
         // Player control is the second most important thing.
         if (data.RequirePlayer)
             SpawnPlayer(_exit);
         if (data.RequireInventory)
-            SpawnInventoryMenu(data.Canvas);
+            SpawnInventoryMenu(canvas);
         if (data.RequireDialogue)
-            SpawnDialogueMenu(data.Canvas);
+            SpawnDialogueMenu(canvas);
+    }
+
+    GameObject SpawnCanvas()
+    {
+        var canvas = Instantiate(Canvas);
+        Instantiate(CanvasEvents);
+        return canvas;
     }
 
     void SpawnPlayer(Vector2 exit)

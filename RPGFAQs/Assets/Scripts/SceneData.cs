@@ -7,7 +7,6 @@ public class SceneData : MonoBehaviour {
     public bool RequirePauseMenu;
     public bool RequireInventory;
     public bool RequireDialogue;
-    public GameObject Canvas;
 
     private void Awake()
     {
