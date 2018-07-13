@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,9 @@ namespace Assets.Scripts
                 FreezePlayer = value;
             }
         }
+        // The amount of time a player is unable to speak after ending a dialogue
+        private float _speechCooldown = 0.75f;
+        private bool _inSpeechCooldown = false;
 
         void Start()
         {
@@ -123,6 +127,10 @@ namespace Assets.Scripts
 
         void Speak()
         {
+            if (_inSpeechCooldown)
+            {
+                return;
+            }
             if (!IsTalking)
             {
                 _currentBubble = _dialogue.ActivateNearestTalkable(transform.position, TalkingRange);
@@ -132,6 +140,14 @@ namespace Assets.Scripts
                     _currentBubble.InitiateDialogue(this);
                 }
             }
+        }
+
+        IEnumerator SpeechCooldown()
+        {
+            _inSpeechCooldown = true;
+            yield return new WaitForSeconds(_speechCooldown);
+            _inSpeechCooldown = false;
+
         }
     }
 }

@@ -30,6 +30,13 @@ public class DialogueSource : MonoBehaviour {
         // is also on the top half.
         var onTopHalf = _camera.WorldToScreenPoint(transform.position).y > screenHeight / 2;
         //Debug.Log($"{screenHeight}, {_camera.WorldToScreenPoint(transform.position).y}");
-        _dialogueManager.StartDialogue(DialogueFile, !onTopHalf, () => speaker.IsTalking = false);
+        _dialogueManager.StartDialogue(DialogueFile, 
+                                       !onTopHalf, 
+                                       () =>
+                                       {
+                                           speaker.IsTalking = false;
+                                           // Yeah, I know. This probably uses reflection or some shit.
+                                           speaker.StartCoroutine("SpeechCooldown");
+                                       });
     }
 }
