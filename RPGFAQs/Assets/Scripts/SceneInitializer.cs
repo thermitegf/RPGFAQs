@@ -37,9 +37,8 @@ public class SceneInitializer : MonoBehaviour {
     {
         // The canvas is always necessary for something.
         var canvas = SpawnCanvas();
-        // Pausing is the most important thing, so it goes first.
-        if (data.RequirePauseMenu)
-            SpawnPauseMenu(canvas);
+        // Pausing is the most important thing, so it's added as soon as possible.
+        SpawnPauseMenu(canvas);
         // Player control is the second most important thing.
         if (data.RequirePlayer)
             SpawnPlayer(_exit);
