@@ -35,7 +35,7 @@ namespace Assets.Scripts
         void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _dialogue = GameObject.Find("LightBackground").GetComponent<DialogueManager>();
+            _dialogue = FindObjectOfType<DialogueManager>();
             _previousPosition = transform.position;
         }
 

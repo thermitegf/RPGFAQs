@@ -13,7 +13,7 @@ public class DialogueSource : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _animator = GetComponent<Animator>();
-        _dialogueManager = GameObject.Find("LightBackground").GetComponent<DialogueManager>();
+        _dialogueManager = FindObjectOfType<DialogueManager>();
         _dialogueManager.RegisterTalkable(this);
         _camera = Camera.main;
 	}

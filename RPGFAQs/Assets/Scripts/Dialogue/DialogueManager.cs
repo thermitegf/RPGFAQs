@@ -18,8 +18,8 @@ public class DialogueManager : DialogueUIBehaviour
     {
         if (_dialogueWindow == null)
         {
-            _dialogueWindow = GameObject.Find("LightBackground");
-            _dialogueLoader = GameObject.Find("DialogueLoader").GetComponent<DialogueRunner>();
+            _dialogueWindow = FindObjectOfType<DialogueManager>().gameObject;
+            _dialogueLoader = FindObjectOfType<DialogueRunner>();
             _windowTransform = _dialogueWindow.GetComponent<RectTransform>();
             _nameMesh = GameObject.Find("Name").GetComponent<TextMeshProUGUI>();
             _nameMesh.text = null;

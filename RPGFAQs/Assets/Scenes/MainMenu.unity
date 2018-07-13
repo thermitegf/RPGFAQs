@@ -258,7 +258,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &954064244
 GameObject:
@@ -442,8 +442,60 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1333304024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1333304025}
+  - component: {fileID: 1333304026}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1333304025
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1333304024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 436.5, y: 245.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1333304026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1333304024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63cb58ffe5428c49a49f0deb94bb818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1229369813161162, guid: e88e9d046f67cd248b772d07064d553f, type: 2}
+  PlayerCamera: {fileID: 1638541445560688, guid: 3a676f58dad41a7418fe84567a92266c,
+    type: 2}
+  Follower: {fileID: 1694932877613432, guid: a8a887b3aa675c74eb74fc35593b4465, type: 2}
+  PauseMenu: {fileID: 1724064487487432, guid: f8592158202e8a345b77930e9076df0d, type: 2}
+  InventoryMenu: {fileID: 1634911791699712, guid: 37bf61310d722aa4fb9b3f48d9644b71,
+    type: 2}
+  DialogueMenu: {fileID: 1434176211713002, guid: b2ed54e332fc76d4bb0043eb063c9136,
+    type: 2}
+  DialogueLoader: {fileID: 1323432527872420, guid: 3302be17a9d3eb746933dedf76d6f865,
+    type: 2}
+  ExitNumber: 0
 --- !u!1 &1560324905
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +629,7 @@ RectTransform:
   m_Children:
   - {fileID: 1560324906}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
