@@ -51,7 +51,6 @@ public class Follow : MonoBehaviour {
         for(int i = 0; i < sampleCount; i++)
         {
             samples[i] = Mathf.RoundToInt(1f / Time.deltaTime);
-            Debug.Log(samples[i]);
             yield return null;
         }
         _movementCount = Mathf.RoundToInt((samples.Sum() / sampleCount) * fractionOfSecond);
