@@ -47,14 +47,14 @@ public class SceneInitializer : MonoBehaviour {
     {
         // The canvas is always necessary for something.
         var canvas = SpawnCanvas();
-        SpawnPauseMenu(canvas);
         SpawnFader(canvas);
         if (data.RequirePlayer)
             SpawnPlayer(_exit);
-        if (data.RequireInventory)
-            SpawnInventoryMenu(canvas);
         if (data.RequireDialogue)
             SpawnDialogueMenu(canvas);
+        if (data.RequireInventory)
+            SpawnInventoryMenu(canvas);
+        SpawnPauseMenu(canvas);
     }
 
     private IEnumerator LoadSceneAsync(string sceneName)
