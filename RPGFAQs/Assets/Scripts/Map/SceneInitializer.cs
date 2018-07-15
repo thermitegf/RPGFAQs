@@ -26,13 +26,9 @@ public class SceneInitializer : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
     }
 
-    void Start()
-    {
-        _faderAnimator = SceneFader.GetComponent<Animator>();
-    }
-
     public void LoadScene(string sceneName, Vector2? exitPosition, bool async)
     {
+        //Debug.Log($"Loading scene: {sceneName}, position = {exitPosition}, async = {async}");
         if (exitPosition != null)
         {
             _exit = exitPosition.Value;
@@ -64,12 +60,15 @@ public class SceneInitializer : MonoBehaviour {
     private IEnumerator LoadSceneAsync(string sceneName)
     {
         _faderAnimator.SetBool("SceneLoading", true);
+        _faderAnimator = null;
         var load = SceneManager.LoadSceneAsync(sceneName);
         while (!load.isDone)
         {
             yield return null;
         }
+        // We expect to have the fader from the new scene at this point.
         _faderAnimator.SetBool("SceneLoading", false);
+        
     }
 
     GameObject SpawnCanvas()
@@ -115,6 +114,12 @@ public class SceneInitializer : MonoBehaviour {
 
     void SpawnFader(GameObject canvas)
     {
-        Instantiate(SceneFader, canvas.transform);
+        var fader = Instantiate(SceneFader, canvas.transform);
+        _faderAnimator = fader.GetComponent<Animator>();
+    }
+
+    void ClearCachedInstances()
+    {
+        _faderAnimator = null;
     }
 }

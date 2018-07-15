@@ -126,7 +126,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4229537469689912, guid: bb52abedecaac5b46b3fb1e8eda2c2fb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6.5
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 4229537469689912, guid: bb52abedecaac5b46b3fb1e8eda2c2fb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -172,6 +172,14 @@ Prefab:
       propertyPath: Destination.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4229537469689912, guid: bb52abedecaac5b46b3fb1e8eda2c2fb, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229537469689912, guid: bb52abedecaac5b46b3fb1e8eda2c2fb, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb52abedecaac5b46b3fb1e8eda2c2fb, type: 2}
   m_IsPrefabParent: 0
@@ -185,6 +193,7 @@ GameObject:
   - component: {fileID: 369522300}
   - component: {fileID: 369522302}
   - component: {fileID: 369522301}
+  - component: {fileID: 369522303}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -3213,6 +3222,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &369522303
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 369522299}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
 --- !u!1001 &472472979
 Prefab:
   m_ObjectHideFlags: 0
