@@ -375,9 +375,9 @@ RectTransform:
   m_Father: {fileID: 1560324906}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 484, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 484, y: -272.5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &954064246
@@ -607,6 +607,7 @@ MonoBehaviour:
     type: 2}
   Follower: {fileID: 1694932877613432, guid: a8a887b3aa675c74eb74fc35593b4465, type: 2}
   Canvas: {fileID: 1675132046489208, guid: 2721780f14e4924489d0041ce5188073, type: 2}
+  SceneFader: {fileID: 1421375445311528, guid: fcbd662c0c58f70449b665acd6d23c04, type: 2}
   CanvasEvents: {fileID: 1475085457398870, guid: 730405daf7b93b84680c384c3974f51f,
     type: 2}
   PauseMenu: {fileID: 1724064487487432, guid: f8592158202e8a345b77930e9076df0d, type: 2}

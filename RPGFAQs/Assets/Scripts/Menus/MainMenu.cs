@@ -17,6 +17,6 @@ public class MainMenu : MonoBehaviour {
 
     public void StartGame()
     {
-        scenes.LoadScene("PrisonYard", Vector2.zero);
+        scenes.LoadScene("PrisonYard", Vector2.zero, false);
     }
 }

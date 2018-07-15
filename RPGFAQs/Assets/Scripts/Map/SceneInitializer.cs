@@ -10,6 +10,7 @@ public class SceneInitializer : MonoBehaviour {
     public GameObject PlayerCamera;
     public GameObject Follower;
     public GameObject Canvas;
+    public GameObject SceneFader;
     public GameObject CanvasEvents;
     public GameObject PauseMenu;
     public GameObject InventoryMenu;
@@ -17,6 +18,7 @@ public class SceneInitializer : MonoBehaviour {
     public GameObject DialogueLoader;
 
     private Vector2 _exit;
+    private Animator _faderAnimator;
 
     void Awake()
     {
@@ -24,28 +26,50 @@ public class SceneInitializer : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void LoadScene(string sceneName, Vector2? exitPosition)
+    void Start()
     {
-        if(exitPosition != null)
+        _faderAnimator = SceneFader.GetComponent<Animator>();
+    }
+
+    public void LoadScene(string sceneName, Vector2? exitPosition, bool async)
+    {
+        if (exitPosition != null)
         {
             _exit = exitPosition.Value;
         }
-        SceneManager.LoadScene(sceneName);
+        if (!async)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            StartCoroutine(LoadSceneAsync(sceneName));
+        }
     }
 
     public void Initialize(SceneData data)
     {
         // The canvas is always necessary for something.
         var canvas = SpawnCanvas();
-        // Pausing is the most important thing, so it's added as soon as possible.
         SpawnPauseMenu(canvas);
-        // Player control is the second most important thing.
+        SpawnFader(canvas);
         if (data.RequirePlayer)
             SpawnPlayer(_exit);
         if (data.RequireInventory)
             SpawnInventoryMenu(canvas);
         if (data.RequireDialogue)
             SpawnDialogueMenu(canvas);
+    }
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        _faderAnimator.SetBool("SceneLoading", true);
+        var load = SceneManager.LoadSceneAsync(sceneName);
+        while (!load.isDone)
+        {
+            yield return null;
+        }
+        _faderAnimator.SetBool("SceneLoading", false);
     }
 
     GameObject SpawnCanvas()
@@ -87,5 +111,10 @@ public class SceneInitializer : MonoBehaviour {
         var menu = Instantiate(DialogueMenu, canvas.transform);
         var loader = Instantiate(DialogueLoader, Vector2.zero, Quaternion.identity);
         loader.GetComponent<DialogueRunner>().dialogueUI = menu.GetComponent<DialogueManager>();
+    }
+
+    void SpawnFader(GameObject canvas)
+    {
+        Instantiate(SceneFader, canvas.transform);
     }
 }
